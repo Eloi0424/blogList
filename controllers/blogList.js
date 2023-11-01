@@ -4,21 +4,15 @@ const Blog = require('../models/blogList')
 
 
 
-blogListRouter.get('/', (request, response) => {
-	Blog
-		.find({})
-		.then(blogs => {
-			response.json(blogs)
-		})
+blogListRouter.get('/', async (request, response) => {
+	const blogs = await Blog.find({})
+	response.json(blogs)
 })
 
-blogListRouter.post('/', (request, response) => {
+blogListRouter.post('/', async (request, response) => {
 	const blog = new Blog(request.body)
-	blog
-		.save()
-		.then(result => {
-			response.status(201).json(result)
-		})
+	const saveResult = await blog.save()
+	response.status(201).json(saveResult)
 })
 
 
