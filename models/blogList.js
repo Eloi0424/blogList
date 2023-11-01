@@ -1,5 +1,5 @@
 mongoose = require('mongoose')
-
+const config = require('../utils/config')
 
 
 const blogSchema = new mongoose.Schema({
@@ -10,7 +10,7 @@ const blogSchema = new mongoose.Schema({
 })
 const Blog = mongoose.model('Blog', blogSchema)
 
-const mongoUrl = 'mongodb+srv://eloi0424:K4eO2KnWrOKLrJOz@nidimension.qmzibah.mongodb.net/blogList?retryWrites=true&w=majority'
+const mongoUrl = config.MONGODB_URI
 mongoose.connect(mongoUrl).then(() => {
 	console.log('connected to MongoDB')
 })
