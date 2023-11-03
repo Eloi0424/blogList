@@ -4,8 +4,9 @@ const blogListRouter = require("./controllers/blogList");
 const usersRouter = require("./controllers/users");
 const config = require("./utils/config");
 const mongoose = require("mongoose");
-
+const errorHandler = require("./utils/errorHandler");
 class App{
+	static instance
 	constructor() {
 		if(!App.instance){
 			const express = require('express')
@@ -29,10 +30,16 @@ class App{
 			mongoose.connect(mongoUrl).then(() => {
 				console.log('connected to MongoDB')
 			})
+			
+			app.use(errorHandler)
+			
+			
+			
 			this.app = app
 			App.instance = this
 		}
+		return App.instance
 	}
 }
-app = new App().app
+app = (new App()).app
 module.exports = App
