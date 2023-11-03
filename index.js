@@ -34,4 +34,5 @@ class App{
 		}
 	}
 }
+app = new App().app
 module.exports = App
