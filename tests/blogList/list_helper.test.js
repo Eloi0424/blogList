@@ -1,4 +1,4 @@
-list_helper = require('../utils/list_helper')
+list_helper = require('./list_helper')
 
 
 describe('mostBlogs', () => {

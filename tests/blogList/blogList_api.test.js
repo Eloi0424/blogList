@@ -1,11 +1,6 @@
 const mongoose = require('mongoose')
-const supertest = require('supertest')
-const app = require('../index')
-const Blog = require('../models/blogList')
-const api = supertest(app)
-
-
-
+const Blog = require('../../models/blogList')
+const api = require('../supertest_api')
 const initialBlogs = [
 	{
 		_id: "5a422a851b54a676234d17f7",
