@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const errorHandler = require("./utils/middleware/errorHandler");
 const unknownEndpoint = require("./utils/middleware/unknownEndpoint");
 const tokenExtractor = require("./utils/middleware/tokenExtractor");
+const userExtractor = require("./utils/middleware/userExtractor");
 class App{
 	static instance
 	constructor() {
@@ -16,7 +17,7 @@ class App{
 			app.use(cors())
 			app.use(express.json())
 			app.use(tokenExtractor)
-			app.use('/api/blogs', blogListRouter)
+			app.use('/api/blogs', userExtractor,blogListRouter)
 			app.use('/api/users', usersRouter)
 			app.use('/api/login', loginRouter)
 			
