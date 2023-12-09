@@ -20,7 +20,10 @@ class App{
 			app.use('/api/blogs', userExtractor,blogListRouter)
 			app.use('/api/users', usersRouter)
 			app.use('/api/login', loginRouter)
-			
+			if (process.env.NODE_ENV === 'test') {
+				const testingRouter = require('./controllers/testing')
+				app.use('/api/testing', testingRouter)
+			}
 			
 			const PORT = config.PORT
 			app.listen(PORT, () => {
